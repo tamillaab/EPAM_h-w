@@ -7,6 +7,13 @@ public class hierarchyOfClasses {
         sarah.display();
         Person bill = new Programmer("Bill", "Miscrosofy","Java");
         bill.display();
+
+        Phone first = new Phone("Samsung");
+        first.display();
+        Phone second = new MobilePhone("Samsung", 2);
+        second.display();
+        Phone third = new SamsungPhone("Samsung", 1,"A21");
+        third.display();
     }
 }
 // класс человека
@@ -44,3 +51,37 @@ class Programmer extends Employee{
         System.out.printf("Programmer %s works in %s and knows %s \n", super.getName(), super.getCompany(), language);
     }
 }
+// second Hierarchy
+class Phone{
+    private String brand;
+    public String getBrand() {return brand;}
+    public  Phone(String brand){this.brand = brand;}
+    public void display() {
+        System.out.printf("The brand %s \n", brand );
+    }
+}
+
+class MobilePhone extends Phone{
+    private int NumberOfSim;
+    public MobilePhone(String brand, int NumberOfSim) {
+        super(brand);
+        this.NumberOfSim = NumberOfSim;
+    }
+    public int getNumberOfSim() {return NumberOfSim;}
+    public void display(){
+        System.out.printf("Phone brand %s has %o SIM-card/-s \n", super.getBrand(), NumberOfSim);
+    }
+}
+ class SamsungPhone extends MobilePhone{
+    private String model;
+    public SamsungPhone(String brand, int NumberOfSim, String model)
+    {
+        super(brand, NumberOfSim);
+        this.model = model;
+    }
+    public String getModel() {return model;}
+     public void display(){
+        System.out.printf("Phone brand %s has %o SIM-card/-s and model is %s \n", super.getBrand(), super.getNumberOfSim(), model);
+     }
+
+ }
