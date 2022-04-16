@@ -14,6 +14,13 @@ public class hierarchyOfClasses {
         second.display();
         Phone third = new SamsungPhone("Samsung", 1,"A21");
         third.display();
+
+        PersonHospital Jack = new PersonHospital("Jack Smith", 35, "male");
+        Jack.display();
+        PersonHospital JackWorker = new Worker("Jack Smith", 35, "male", 205, 50000, 7);
+        JackWorker.display();
+        PersonHospital JackDoctor = new Doctor("Jack Smith", 35, "male", 205, 50000, 7, "Dermatology", 4545, "second");
+        JackDoctor.display();
     }
 }
 // класс человека
@@ -69,7 +76,7 @@ class MobilePhone extends Phone{
     }
     public int getNumberOfSim() {return NumberOfSim;}
     public void display(){
-        System.out.printf("Phone brand %s has %o SIM-card/-s \n", super.getBrand(), NumberOfSim);
+        System.out.printf("Phone brand %s has %d SIM-card/-s \n", super.getBrand(), NumberOfSim);
     }
 }
  class SamsungPhone extends MobilePhone{
@@ -81,7 +88,58 @@ class MobilePhone extends Phone{
     }
     public String getModel() {return model;}
      public void display(){
-        System.out.printf("Phone brand %s has %o SIM-card/-s and model is %s \n", super.getBrand(), super.getNumberOfSim(), model);
+        System.out.printf("Phone brand %s has %d SIM-card/-s and model is %s \n", super.getBrand(), super.getNumberOfSim(), model);
+     }
+ }
+
+     class PersonHospital {
+         private String FIO;
+         private int ageHosp;
+         private String sex;
+         public  PersonHospital(String FIO, int ageHosp, String sex){
+             this.FIO = FIO;
+             this.ageHosp = ageHosp;
+             this.sex = sex;
+         }
+         public String getFIO() { return FIO;}
+         public int getAgeHosp() { return ageHosp;}
+         public String getSex() { return sex;}
+         public void display(){
+             System.out.printf("Person's FIO is%s and %d y.o., sex is %s,  \n", FIO, ageHosp, sex);
+         }
      }
 
- }
+     class Worker extends PersonHospital{
+        private int numberOfWorker;
+        private int salary;
+        private int workExperience;
+        public Worker(String FIO, int ageHosp, String sex, int numberOfWorker, int salary, int workExperience){
+            super(FIO, ageHosp, sex);
+            this.numberOfWorker = numberOfWorker;
+            this.salary = salary;
+            this.workExperience = workExperience;
+         }
+         public int getNumberOfWorker() { return numberOfWorker;}
+         public int getSalary() { return salary;}
+         public int getWorkExperience() { return workExperience;}
+         public void display(){
+             System.out.printf("Person's FIO is %s and %d y.o., sex is %s. %s as worker has number %d, salary %d, workExperience in %d ages  \n", super.getFIO(), super.getAgeHosp(), super.getSex(), super.getFIO(), numberOfWorker, salary, workExperience);
+
+         }
+     }
+
+     class Doctor extends Worker{
+        private String specialization;
+        private int numberOfPatient;
+        private String category;
+        public  Doctor(String FIO, int ageHosp, String sex, int numberOfWorker, int salary, int workExperience, String specialization, int numberOfPatient, String category){
+            super(FIO, ageHosp, sex, numberOfWorker, salary, workExperience);
+            this.specialization = specialization;
+            this.numberOfPatient = numberOfPatient;
+            this.category = category;
+        }
+         public void display(){
+             System.out.printf("Person's FIO is%s and %d y.o., sex is %s. %s as worker has number %d, salary %d, workExperience in %d ages. Specialization of doctor is %s, this doctor's patient's number is %o, and category is %s \n", super.getFIO(), super.getAgeHosp(), super.getSex(), super.getFIO(), super.getNumberOfWorker(), super.getSalary(), super.getWorkExperience(), specialization, numberOfPatient, category);
+
+         }
+     }
